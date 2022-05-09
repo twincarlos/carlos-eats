@@ -25,3 +25,13 @@ def seed_items():
         description="lorem ipsum",
         price=2.90
     )
+
+    db.session.add(caffe_americano)
+    db.session.add(cappuccino)
+    db.session.add(espresso_macchiato)
+
+    db.session.commit()
+
+def undo_items():
+    db.session.execute('TRUNCATE items RESTART IDENTITY CASCADE;')
+    db.session.commit()

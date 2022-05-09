@@ -7,7 +7,7 @@ def seed_categories():
     ice_cream = Category(name="Ice Cream")
 
     db.session.add(fast_food)
-    db.session.add(coffe)
+    db.session.add(coffee)
     db.session.add(ice_cream)
 
     db.session.commit()
