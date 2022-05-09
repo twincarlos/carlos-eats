@@ -4,11 +4,11 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='demo', email='demo@aa.io', password='password', profile_picture='https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/6222481c0ad8761618b18e7e_profile-picture.jpg')
+        username='demo', email='demo@aa.io', password='password', profile_picture='https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/6222481c0ad8761618b18e7e_profile-picture.jpg', address="123 SW 45 Ave")
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', profile_picture='https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/6222481c0ad8761618b18e7e_profile-picture.jpg')
+        username='marnie', email='marnie@aa.io', password='password', profile_picture='https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/6222481c0ad8761618b18e7e_profile-picture.jpg', address="123 SW 45 Ave")
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', profile_picture='https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/6222481c0ad8761618b18e7e_profile-picture.jpg')
+        username='bobbie', email='bobbie@aa.io', password='password', profile_picture='https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/6222481c0ad8761618b18e7e_profile-picture.jpg', address="123 SW 45 Ave")
 
     db.session.add(demo)
     db.session.add(marnie)

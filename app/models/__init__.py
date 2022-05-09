@@ -3,7 +3,6 @@ from .db import db
 from .user import User
 from .restaurant import Restaurant
 
-from .address import Address
 from .order import Order
 from .order_item import Order_Item
 
