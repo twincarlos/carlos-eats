@@ -1,0 +1,9 @@
+#restaurants {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 80vw;
+}
+
+.restaurant > img {
+    width: 100%;
+}
