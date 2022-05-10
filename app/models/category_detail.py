@@ -15,6 +15,6 @@ class Category_Detail(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "category": self.category,
-            "restaurant": self.restaurant
+            "category": self.category.to_dict(),
+            "restaurant": self.restaurant.to_dict()
         }

@@ -38,6 +38,6 @@ class User(db.Model, UserMixin):
             "address": self.address,
             "restaurants": [restaurant.to_dict() for restaurant in self.restaurants],
             "favorites": [favorite.to_dict() for favorite in self.favorites],
-            "cart": self.cart.to_dict(),
+            "cart": self.cart,
             "orders": [order.to_dict() for order in self.orders]
         }

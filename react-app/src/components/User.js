@@ -20,6 +20,8 @@ function User() {
     return null;
   }
 
+  console.log(user);
+
   return (
     <ul>
       <li>

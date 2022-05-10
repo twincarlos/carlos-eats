@@ -19,12 +19,14 @@ def seed():
     seed_menu_sections()
     seed_items()
     seed_categories()
+    seed_category_details()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_category_details()
     undo_categories()
     undo_items()
     undo_menu_sections()
