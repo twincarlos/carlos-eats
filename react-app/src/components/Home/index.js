@@ -3,9 +3,9 @@ import './Home.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { getAllRestaurants } from '../../store/restaurants';
 import Categories from './Categories';
 import Restaurants from './Restaurants';
-import { getAllRestaurants } from '../../store/restaurants';
 
 function Home () {
     const dispatch = useDispatch();

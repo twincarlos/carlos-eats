@@ -1,5 +1,5 @@
-import './Categories.css';
-import allRestaurants from '../../../assets/allRestaurants.png';
+import './Home.css';
+import allRestaurants from '../../assets/allRestaurants.png';
 
 function Categories ({ categories, setFilter }) {
     return (
@@ -10,7 +10,7 @@ function Categories ({ categories, setFilter }) {
             </div>
             {
                 categories.map(category => (
-                    <div className='category' key={category.category.id} onClick={() => setFilter(category.category.name)}>
+                    <div className='category' key={category.category.id} onClick={() => setFilter(category.category.id)}>
                         <img src={category.category.picture} alt=''></img>
                         <p>{category.category.name}</p>
                     </div>

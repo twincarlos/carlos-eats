@@ -15,3 +15,8 @@ def all_restaurants():
             categories.append(category_detail.to_dict())
 
         return { "categories": categories }
+
+@restaurant_routes.route("/<int:restaurant_id>", methods=["GET", "PUT", "DELETE"])
+def one_restaurant(restaurant_id):
+    if request.method == "GET":
+        return Restaurant.query.get(restaurant_id).to_dict()
