@@ -17,6 +17,6 @@ class Cart(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "restaurant": self.restaurant,
+            "restaurant": self.restaurant.to_dict(),
             "cart_items": [cart_item.to_dict() for cart_item in self.cart_items]
         }
