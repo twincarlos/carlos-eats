@@ -1,9 +1,15 @@
-
 import React from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import { Modal } from '../context/Modal';
+import Carts from './Carts';
 
 const NavBar = () => {
+  const user = useSelector(state => state.session.user);
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <nav>
       <ul>
@@ -28,9 +34,17 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <button onClick={() => setShowModal(true)}>Cart</button>
+        </li>
+        <li>
           <LogoutButton />
         </li>
       </ul>
+      {
+        showModal && <Modal onClose={() => setShowModal(false)}>
+          <Carts carts={user.carts} />
+        </Modal>
+      }
     </nav>
   );
 }

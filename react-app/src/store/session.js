@@ -3,8 +3,11 @@ const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
 const ADD_CART = 'session/ADD_CART';
+const DELETE_CART = 'session/DELETE_CART';
 const ADD_NEW_CART_ITEM = 'session/ADD_NEW_CART_ITEM';
 const ADD_EXISTING_CART_ITEM = 'session/ADD_EXISTING_CART_ITEM';
+const UPDATE_CART_ITEM = 'session/UPDATE_CART_ITEM';
+const DELETE_CART_ITEM = 'session/DELETE_CART_ITEM';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -20,6 +23,11 @@ const addCart = cart => ({
   cart
 });
 
+const deleteCart = cartId => ({
+  type: DELETE_CART,
+  cartId
+});
+
 const addNewCartItem = cartItem => ({
   type: ADD_NEW_CART_ITEM,
   cartItem
@@ -27,6 +35,16 @@ const addNewCartItem = cartItem => ({
 
 const addExistingCartItem = cartItem => ({
   type: ADD_EXISTING_CART_ITEM,
+  cartItem
+});
+
+const updateCartItem = cartItem => ({
+  type: UPDATE_CART_ITEM,
+  cartItem
+});
+
+const deleteCartItem = cartItem => ({
+  type: DELETE_CART_ITEM,
   cartItem
 });
 
@@ -128,6 +146,12 @@ export const addNewCart = data => async dispatch => {
   return cart;
 }
 
+export const deleteOneCart = data => async dispatch => {
+  const response = await fetch(`/api/carts/${data.cart_id}`, { method: 'DELETE' });
+  const cartId = await response.json();
+  dispatch(deleteCart(cartId));
+}
+
 export const addOneNewCartItem = data => async dispatch => {
   const response = await fetch(`/api/carts/${data.cart_id}/add_cart_item`, {
     method: 'POST',
@@ -148,6 +172,22 @@ export const addOneExistingCartItem = data => async dispatch => {
   dispatch(addExistingCartItem(cartItem));
 }
 
+export const updateOneCartItem = data => async dispatch => {
+  const response = await fetch(`/api/carts/${data.cart_id}/cart_item/${data.cart_item_id}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  const cartItem = await response.json();
+  dispatch(updateCartItem(cartItem));
+}
+
+export const deleteOneCartItem = data => async dispatch => {
+  const response = await fetch(`/api/carts/${data.cart_id}/cart_item/${data.cart_item_id}`, { method: 'DELETE' });
+  const cartItem = await response.json();
+  dispatch(deleteCartItem(cartItem));
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
@@ -160,6 +200,14 @@ export default function reducer(state = initialState, action) {
         user: {
           ...state.user,
           carts: [...state.user.carts, action.cart]
+        }
+      }
+    case DELETE_CART:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          carts: state.user.carts.filter(cart => cart.id !== action.cartId)
         }
       }
     case ADD_NEW_CART_ITEM:
@@ -188,6 +236,32 @@ export default function reducer(state = initialState, action) {
           })
         }
       }
+      case UPDATE_CART_ITEM:
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            carts: state.user.carts.map(cart => {
+              if (cart.id === action.cartItem.cart_id) {
+                cart.cart_items = cart.cart_items.map(cartItem => cartItem.id === action.cartItem.id ? action.cartItem : cartItem);
+              }
+              return cart;
+            })
+          }
+        }
+      case DELETE_CART_ITEM:
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            carts: state.user.carts.map(cart => {
+              if (cart.id === action.cartItem.cart_id) {
+                cart.cart_items = cart.cart_items.filter(cartItem => cartItem.id !== action.cartItem.cart_item_id);
+              }
+              return cart;
+            })
+          }
+        }
     default:
       return state;
   }

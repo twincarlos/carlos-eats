@@ -55,4 +55,4 @@ def one_cart_item(cart_id, cart_item_id):
     if request.method == "DELETE":
         db.session.delete(cart_item)
         db.session.commit()
-        return str(cart_item_id)
+        return { "cart_id": cart_id, "cart_item_id": cart_item_id }
