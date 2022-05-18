@@ -17,6 +17,6 @@ class Cart_Item(db.Model):
         return {
             "id": self.id,
             "cart_id": self.cart_id,
-            "item": self.item,
+            "item": self.item.to_dict(),
             "quantity": self.quantity
         }

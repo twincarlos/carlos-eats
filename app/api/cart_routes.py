@@ -8,6 +8,7 @@ cart_routes = Blueprint("carts", __name__)
 @cart_routes.route("", methods=["POST"])
 def create_cart():
     if request.method == "POST":
+        data = request.json
         new_cart = Cart(user_id=current_user.id, restaurant_id=data["restaurant_id"])
         db.session.add(new_cart)
         db.session.commit()

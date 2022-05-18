@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
 
     restaurants = db.relationship("Restaurant", back_populates="user", cascade="all, delete")
     favorites = db.relationship("Favorite", back_populates="user", cascade="all, delete")
-    cart = db.relationship("Cart", back_populates="user", cascade="all, delete")
+    carts = db.relationship("Cart", back_populates="user", cascade="all, delete")
     orders = db.relationship("Order", back_populates="user", cascade="all, delete")
 
     @property
@@ -38,6 +38,6 @@ class User(db.Model, UserMixin):
             "address": self.address,
             "restaurants": [restaurant.to_dict() for restaurant in self.restaurants],
             "favorites": [favorite.to_dict() for favorite in self.favorites],
-            "cart": self.cart,
+            "carts": [cart.to_dict() for cart in self.carts],
             "orders": [order.to_dict() for order in self.orders]
         }

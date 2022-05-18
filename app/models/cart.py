@@ -9,7 +9,7 @@ class Cart(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"), nullable=False)
 
-    user = db.relationship("User", back_populates="cart")
+    user = db.relationship("User", back_populates="carts")
     restaurant = db.relationship("Restaurant", back_populates="carts")
     cart_items = db.relationship("Cart_Item", back_populates="cart", cascade="all, delete")
 
