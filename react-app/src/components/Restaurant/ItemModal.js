@@ -14,15 +14,31 @@ function ItemModal({ item }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const cartFound = user.carts.find(userCart => userCart.restaurant.id === restaurantId);
+        let itemFound = null;
+        const cartFound = user.carts.find(userCart => {
+            if (userCart.restaurant.id === restaurantId) {
+                itemFound = userCart.cart_items.find(cartItem => cartItem.item.id === item.id);
+                return true;
+            }
+            return false;
+        });
         if (cartFound) {
-            dispatch(addOneNewCartItem({
-                cart_id: cartFound.id,
-                item_id: item.id,
-                quantity
-            }));
+            if (itemFound) {
+                dispatch(addOneExistingCartItem({
+                    cart_item_id: itemFound.id,
+                    cart_id: cartFound.id,
+                    item_id: item.id,
+                    quantity
+                }));
+            } else {
+                dispatch(addOneNewCartItem({
+                    cart_id: cartFound.id,
+                    item_id: item.id,
+                    quantity
+                }));
+            }
         } else {
-            await dispatch(addNewCart({ restaurant_id: restaurantId })).then(cart => dispatch(addOneExistingCartItem({
+            await dispatch(addNewCart({ restaurant_id: restaurantId })).then(cart => dispatch(addOneNewCartItem({
                 cart_id: cart.id,
                 item_id: item.id,
                 quantity

@@ -40,7 +40,7 @@ def add_cart_item(cart_id):
         existing_cart_item = Cart_Item.query.get(data["cart_item_id"])
         existing_cart_item.quantity = existing_cart_item.quantity + data["quantity"]
         db.session.commit()
-        return existing_cart_item.quantity
+        return existing_cart_item.to_dict()
 
 @cart_routes.route("<int:cart_id>/cart_item/<int:cart_item_id>", methods=["PUT", "DELETE"])
 def one_cart_item(cart_id, cart_item_id):
