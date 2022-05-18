@@ -2,7 +2,7 @@ import './Carts.css';
 
 import { useDispatch } from 'react-redux';
 
-import { deleteOneCart, updateOneCartItem, deleteOneCartItem } from '../../store/session';
+import { deleteOneCart, updateOneCartItem, deleteOneCartItem, addOneNewOrder } from '../../store/session';
 
 function Carts({ carts }) {
     const dispatch = useDispatch();
@@ -27,7 +27,23 @@ function Carts({ carts }) {
                                 ))
                             }
                         </div>
-                        <button>Checkout {cart.cart_items.reduce((prev, curr) => prev + (curr.quantity * curr.item.price), 0)}</button>
+                        <button onClick={async () => {
+                            const now = new Date(Date.now());
+                            const year = now.getFullYear();
+                            const month = now.getMonth() + 1;
+                            const date = now.getDate();
+                            const hours = now.getHours();
+                            const minutes = now.getMinutes();
+                            const seconds = now.getSeconds();
+                            const datetime = `${year}-${month < 10 ? `0${month}` : month}-${date < 10 ? `0${date}` : date} ${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+                            await dispatch(addOneNewOrder({
+                                restaurant_name: cart.restaurant.name,
+                                restaurant_picture: cart.restaurant.picture,
+                                time: datetime,
+                                order_items: cart.cart_items.map(cartItem => ({ name: cartItem.item.name, price: cartItem.item.price, quantity: cartItem.quantity }))
+                            })).then(() => dispatch(deleteOneCart({ cart_id: cart.id })));
+                        }}>Checkout {cart.cart_items.reduce((prev, curr) => prev + (curr.quantity * curr.item.price), 0)}</button>
                     </div>
                 ))
             }

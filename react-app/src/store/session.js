@@ -4,10 +4,13 @@ const REMOVE_USER = 'session/REMOVE_USER';
 
 const ADD_CART = 'session/ADD_CART';
 const DELETE_CART = 'session/DELETE_CART';
+
 const ADD_NEW_CART_ITEM = 'session/ADD_NEW_CART_ITEM';
 const ADD_EXISTING_CART_ITEM = 'session/ADD_EXISTING_CART_ITEM';
 const UPDATE_CART_ITEM = 'session/UPDATE_CART_ITEM';
 const DELETE_CART_ITEM = 'session/DELETE_CART_ITEM';
+
+const ADD_NEW_ORDER = 'session/ADD_NEW_ORDER';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -46,6 +49,11 @@ const updateCartItem = cartItem => ({
 const deleteCartItem = cartItem => ({
   type: DELETE_CART_ITEM,
   cartItem
+});
+
+const addNewOrder = order => ({
+  type: ADD_NEW_ORDER,
+  order
 });
 
 const initialState = { user: null };
@@ -188,6 +196,16 @@ export const deleteOneCartItem = data => async dispatch => {
   dispatch(deleteCartItem(cartItem));
 }
 
+export const addOneNewOrder = data => async dispatch => {
+  const response = await fetch('/api/orders', {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  const order = await response.json();
+  dispatch(addNewOrder(order));
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
@@ -260,6 +278,14 @@ export default function reducer(state = initialState, action) {
               }
               return cart;
             })
+          }
+        }
+      case ADD_NEW_ORDER:
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            orders: [...state.user.orders, action.order]
           }
         }
     default:

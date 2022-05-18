@@ -10,7 +10,6 @@ class Order(db.Model):
     restaurant_name = db.Column(db.String, nullable=False)
     restaurant_picture = db.Column(db.String, nullable=False)
     time = db.Column(db.DateTime, nullable=False)
-    total = db.Column(db.Float, nullable=False)
 
     user = db.relationship("User", back_populates="orders")
     order_items = db.relationship("Order_Item", back_populates="order", cascade="all, delete")
@@ -22,6 +21,5 @@ class Order(db.Model):
             "restaurant_name": self.restaurant_name,
             "restaurant_picture": self.restaurant_picture,
             "time": self.time,
-            "total": self.total,
             "order_items": [order_item.to_dict() for order_item in self.order_items]
         }
