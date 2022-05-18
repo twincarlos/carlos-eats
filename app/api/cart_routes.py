@@ -26,7 +26,7 @@ def one_cart(cart_id):
         db.session.commit()
         return str(cart_id)
 
-@cart_routes.route("/<int:cart_id>/add_cart_item", methods=["POST"])
+@cart_routes.route("/<int:cart_id>/add_cart_item", methods=["POST", "PUT"])
 def add_cart_item(cart_id):
     data = request.json
 
@@ -35,6 +35,12 @@ def add_cart_item(cart_id):
         db.session.add(new_cart_item)
         db.session.commit()
         return new_cart_item.to_dict()
+
+    if request.method == "PUT":
+        existing_cart_item = Cart_Item.query.get(data["cart_item_id"])
+        existing_cart_item.quantity = existing_cart_item.quantity + data["quantity"]
+        db.session.commit()
+        return existing_cart_item.quantity
 
 @cart_routes.route("<int:cart_id>/cart_item/<int:cart_item_id>", methods=["PUT", "DELETE"])
 def one_cart_item(cart_id, cart_item_id):

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { addNewCart, addNewCartItem } from '../../store/session';
+import { addNewCart, addOneNewCartItem, addOneExistingCartItem } from '../../store/session';
 
 function ItemModal({ item }) {
     const restaurantId = Number(useParams().restaurantId);
@@ -16,13 +16,13 @@ function ItemModal({ item }) {
         e.preventDefault();
         const cartFound = user.carts.find(userCart => userCart.restaurant.id === restaurantId);
         if (cartFound) {
-            dispatch(addNewCartItem({
+            dispatch(addOneNewCartItem({
                 cart_id: cartFound.id,
                 item_id: item.id,
                 quantity
             }));
         } else {
-            await dispatch(addNewCart({ restaurant_id: restaurantId })).then(cart => dispatch(addNewCartItem({
+            await dispatch(addNewCart({ restaurant_id: restaurantId })).then(cart => dispatch(addOneExistingCartItem({
                 cart_id: cart.id,
                 item_id: item.id,
                 quantity

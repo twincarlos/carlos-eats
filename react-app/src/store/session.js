@@ -3,9 +3,8 @@ const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
 const ADD_CART = 'session/ADD_CART';
-// const DELETE_CART = 'session/DELETE_CART';
-const ADD_CART_ITEM = 'session/ADD_CART_ITEM';
-// const DELETE_CART_ITEM = 'session/DELETE_CART_ITEM';
+const ADD_NEW_CART_ITEM = 'session/ADD_NEW_CART_ITEM';
+const ADD_EXISTING_CART_ITEM = 'session/ADD_EXISTING_CART_ITEM';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -14,27 +13,22 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
-})
+});
 
 const addCart = cart => ({
   type: ADD_CART,
   cart
 });
 
-// const deleteCart = cart => ({
-//   type: DELETE_CART,
-//   cart
-// });
-
-const addCartItem = cartItem => ({
-  type: ADD_CART_ITEM,
+const addNewCartItem = cartItem => ({
+  type: ADD_NEW_CART_ITEM,
   cartItem
 });
 
-// const deleteCartItem = cartItem => ({
-//   type: DELETE_CART_ITEM,
-//   cartItem
-// });
+const addExistingCartItem = cartItem => ({
+  type: ADD_EXISTING_CART_ITEM,
+  cartItem
+});
 
 const initialState = { user: null };
 
@@ -134,14 +128,24 @@ export const addNewCart = data => async dispatch => {
   return cart;
 }
 
-export const addNewCartItem = data => async dispatch => {
+export const addOneNewCartItem = data => async dispatch => {
   const response = await fetch(`/api/carts/${data.cart_id}/add_cart_item`, {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
   const cartItem = await response.json();
-  dispatch(addCartItem(cartItem));
+  dispatch(addNewCartItem(cartItem));
+}
+
+export const addOneExistingCartItem = data => async dispatch => {
+  const response = await fetch(`/api/carts/${data.cart_id}/add_cart_item`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  const cartItem = await response.json();
+  dispatch(addExistingCartItem(cartItem));
 }
 
 export default function reducer(state = initialState, action) {
@@ -158,22 +162,27 @@ export default function reducer(state = initialState, action) {
           carts: [...state.user.carts, action.cart]
         }
       }
-    case ADD_CART_ITEM:
+    case ADD_NEW_CART_ITEM:
       return {
         ...state,
         user: {
           ...state.user,
           carts: state.user.carts.map(cart => {
             if (cart.id === action.cartItem.cart_id) {
-              if (cart.cart_items.find(cartItem => cartItem.id === action.cartItem.id)) {
-                for (let i = 0; i < cart.cart_items.length; i++) {
-                  if (cart.cart_items[i].id === action.cartItem.id) {
-                    cart.cart_items[i].quanity += action.cartItem.quanity;
-                  }
-                }
-              } else {
-                cart.cart_items = [...cart.cart_items, action.cartItem];
-              }
+              cart.cart_items = [...cart.cart_items, action.cartItem];
+            }
+            return cart;
+          })
+        }
+      }
+    case ADD_EXISTING_CART_ITEM:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          carts: state.user.carts.map(cart => {
+            if (cart.id === action.cartItem.cart_id) {
+              cart.cart_items = cart.cart_items.map(cartItem => cartItem.id === action.cartItem.id ? action.cartItem : cartItem);
             }
             return cart;
           })
