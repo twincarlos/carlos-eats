@@ -17,13 +17,13 @@ function Items ({ itemSections, currentSection }) {
             {
                 itemSections.map(itemSection => (
                     !currentSection || currentSection === itemSection.id ? (<div key={itemSection.id}>
-                        <p>{itemSection.name}</p>
+                        <h1>{itemSection.name}</h1>
                         <div className='item-section'>
                             {
                                 itemSection.items.map(item => (
                                     <div key={item.id} className='item' onClick={() => setShowModal(item)}>
                                         <img src={item.picture} alt=''></img>
-                                        <p>{item.name}</p>
+                                        <p>{item.name} - ${item.price}</p>
                                     </div>
                                 ))
                             }

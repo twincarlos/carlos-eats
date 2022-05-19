@@ -12,8 +12,7 @@ function ItemModal({ item }) {
     const user = useSelector(state => state.session.user);
     const [quantity, setQuantity] = useState(1);
 
-    const handleSubmit = async e => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         let itemFound = null;
         const cartFound = user.carts.find(userCart => {
             if (userCart.restaurant.id === restaurantId) {
@@ -49,14 +48,19 @@ function ItemModal({ item }) {
     return (
         <div id='item-modal'>
             <img src={item.picture} alt=''></img>
-            <h1>{item.name}</h1>
-            <h4>{item.price}</h4>
-            <p>{item.description}</p>
-            <form onSubmit={handleSubmit} style={{ display: 'flex' }}>
-                <input type='number' value={quantity} onChange={e => setQuantity(Number(e.target.value))}></input>
-                <button>Add to Cart</button>
-                <p>${item.price * quantity}</p>
-            </form>
+            <div id='details'>
+                <h1>{item.name}</h1>
+                <h4>${item.price}</h4>
+                <p>{item.description}</p>
+            </div>
+            <div id='add-to-cart'>
+                <div id='quantity'>
+                    <button onClick={() => quantity > 1 ? setQuantity(quantity - 1) : null}>-</button>
+                    <p>{quantity}</p>
+                    <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                </div>
+                <button onClick={handleSubmit}>Add to Cart - ${item.price * quantity}</button>
+            </div>
         </div>
     );
 }

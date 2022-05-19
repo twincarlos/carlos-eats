@@ -25,6 +25,7 @@ function Restaurant () {
         <div id='restaurant'>
             <img src={restaurant.picture} alt=''></img>
             <h1>{restaurant.name}</h1>
+            <p>{restaurant.address} - Open until {restaurant.hours} {restaurant.hours < 11 ? 'am' : 'pm'}</p>
             <div id='menu'>
                 <ItemSections itemSections={restaurant.menu_sections} setCurrentSection={setCurrentSection} />
                 <Items itemSections={restaurant.menu_sections} currentSection={currentSection} />

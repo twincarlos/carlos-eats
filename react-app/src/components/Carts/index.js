@@ -7,6 +7,7 @@ import { deleteOneCart, updateOneCartItem, deleteOneCartItem, addOneNewOrder } f
 function Carts({ carts }) {
     const dispatch = useDispatch();
     return (
+        carts.length ?
         <div id='carts-main'>
             {
                 carts.map(cart => (
@@ -47,6 +48,10 @@ function Carts({ carts }) {
                     </div>
                 ))
             }
+        </div>
+            :
+        <div id='empty-cart'>
+            <p>Add items from a restaurant to start a new cart</p>
         </div>
     );
 }
