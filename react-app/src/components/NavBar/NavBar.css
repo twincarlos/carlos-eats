@@ -1,0 +1,49 @@
+/* ************************************************ */
+/* NOT LOGGED IN */
+/* ************************************************ */
+
+#not-logged-in > ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#not-logged-in > ul > li > a#login {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-right: 40px;
+}
+
+/* ************************************************ */
+/* LOGGED IN */
+/* ************************************************ */
+
+#logged-in > ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logged-in > ul > li#address {
+    background-color: #EEEEEE;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+#logged-in > ul > li > input {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #EEEEEE;
+}
+
+#logged-in > ul > li > button#cart {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
