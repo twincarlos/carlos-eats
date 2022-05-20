@@ -1,0 +1,21 @@
+#search-modal {
+    background-color: white;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.restaurant-search {
+    height: 50px;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.restaurant-search > img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}

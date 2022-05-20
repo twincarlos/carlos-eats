@@ -20,3 +20,9 @@ def all_restaurants():
 def one_restaurant(restaurant_id):
     if request.method == "GET":
         return Restaurant.query.get(restaurant_id).to_dict()
+
+@restaurant_routes.route("/search/<string:keyword>", methods=["GET"])
+def search_restaurants(keyword):
+    if request.method == "GET":
+        restaurants = Restaurant.query.filter(Restaurant.name.ilike(f"%{keyword}%"))
+        return { 'restaurants': [restaurant.to_dict() for restaurant in restaurants] }
