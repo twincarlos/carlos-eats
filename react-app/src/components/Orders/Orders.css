@@ -1,0 +1,18 @@
+.order {
+    display: flex;
+    margin-bottom: 10px;
+    border: 1px solid #EEEEEE;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.order > img {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.order-items {
+    line-height: 5px;
+    margin-top: -10px;
+}

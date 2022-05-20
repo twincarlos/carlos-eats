@@ -5,10 +5,9 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/index';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import Home from './components/Home';
 import Splash from './components/Splash';
+import Orders from './components/Orders';
 import Restaurant from './components/Restaurant';
 import { authenticate } from './store/session';
 
@@ -40,11 +39,8 @@ function App() {
         <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+        <ProtectedRoute path='/orders' exact={true} >
+          <Orders />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <Home />

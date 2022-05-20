@@ -9,17 +9,18 @@ function Carts({ carts }) {
     return (
         carts.length ?
         <div id='carts-main'>
+            <h1>Your carts</h1>
             {
                 carts.map(cart => (
-                    <div key={cart.id} className='cart' style={{ display: 'flex' }}>
-                        <div>
+                    <div key={cart.id} className='cart'>
+                        <div id='restaurant-details'>
                             <img style={{ width: 100 }} src={cart.restaurant.picture} alt=''></img>
                             <p>{cart.restaurant.name}</p>
                         </div>
                         <div>
                             {
                                 cart.cart_items.map(cartItem => (
-                                    <div key={cartItem.id} style={{ display: 'flex' }}>
+                                    <div className='cart-item' key={cartItem.id}>
                                         <input type='number' defaultValue={cartItem.quantity} onChange={async e => {
                                             e.target.value > 0 ? dispatch(updateOneCartItem({ cart_id: cart.id, cart_item_id: cartItem.id, quantity: e.target.value })) : (cart.cart_items.length > 1 ? dispatch(deleteOneCartItem({ cart_id: cart.id, cart_item_id: cartItem.id })) : dispatch(deleteOneCart({ cart_id: cart.id })));
                                         }}></input>

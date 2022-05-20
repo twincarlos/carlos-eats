@@ -47,3 +47,11 @@
     padding: 10px 20px;
     border-radius: 20px;
 }
+
+.nav-links {
+    background-color: #EEEEEE;
+    padding: 10px 20px;
+    color: black;
+    border-radius: 20px;
+    font-size: 14px;
+}

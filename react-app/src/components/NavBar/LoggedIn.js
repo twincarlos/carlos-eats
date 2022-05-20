@@ -29,6 +29,11 @@ const LoggedIn = ({ user }) => {
           <button id='cart' onClick={() => setShowModal(true)}>Cart</button>
         </li>
         <li>
+          <NavLink className='nav-links' to='/orders'>
+            Orders
+          </NavLink>
+        </li>
+        <li>
           <LogoutButton />
         </li>
       </ul>
