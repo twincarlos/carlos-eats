@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import { addNewCart, addOneNewCartItem, addOneExistingCartItem } from '../../store/session';
 
-function ItemModal({ item }) {
+function ItemModal({ item, setShowModal }) {
     const restaurantId = Number(useParams().restaurantId);
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
@@ -43,6 +43,7 @@ function ItemModal({ item }) {
                 quantity
             })));
         }
+        setShowModal(null);
     }
 
     return (

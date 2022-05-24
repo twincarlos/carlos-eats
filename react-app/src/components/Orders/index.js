@@ -7,7 +7,7 @@ function Orders() {
 
     return (
         <div id='orders-main'>
-            <h1>Your orders</h1>
+            <h1><i className="fas fa-receipt"></i> Your orders</h1>
             {
                 user.orders.map(order => (
                     <div className='order' key={order.id}>
@@ -22,6 +22,7 @@ function Orders() {
                                 ))
                             }
                             <p>Total: ${order.order_items.reduce((prev, curr) => prev + (curr.quantity * curr.item_price), 0)}</p>
+                            <p>{order.time.slice(0, 16)}</p>
                         </div>
                     </div>
                 ))

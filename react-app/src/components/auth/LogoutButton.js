@@ -13,7 +13,7 @@ const LogoutButton = () => {
     backgroundColor: '#EEEEEE',
     padding: '10px 20px',
     borderRadius: 20
-  }} onClick={onLogout}>Logout</button>;
+  }} onClick={onLogout}><i className="fas fa-sign-out-alt"></i> Logout</button>;
 };
 
 export default LogoutButton;

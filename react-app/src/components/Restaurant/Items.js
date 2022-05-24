@@ -11,7 +11,7 @@ function Items ({ itemSections, currentSection }) {
         <div id='items'>
             {
                 showModal && <Modal onClose={() => setShowModal(null)}>
-                    <ItemModal item={showModal} />
+                    <ItemModal item={showModal} setShowModal={setShowModal} />
                 </Modal>
              }
             {

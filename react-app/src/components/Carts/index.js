@@ -9,10 +9,11 @@ function Carts({ carts }) {
     return (
         carts.length ?
         <div id='carts-main'>
-            <h1>Your carts</h1>
+            <h1><i className="fas fa-shopping-cart"></i> Your carts</h1>
             {
                 carts.map(cart => (
                     <div key={cart.id} className='cart'>
+                        <button style={{ backgroundColor: 'transparent', color: 'black' }} onClick={() => dispatch(deleteOneCart({ cart_id: cart.id }))}><i className="far fa-trash-alt"></i></button>
                         <div id='restaurant-details'>
                             <img style={{ width: 100 }} src={cart.restaurant.picture} alt=''></img>
                             <p>{cart.restaurant.name}</p>
@@ -45,13 +46,14 @@ function Carts({ carts }) {
                                 time: datetime,
                                 order_items: cart.cart_items.map(cartItem => ({ name: cartItem.item.name, price: cartItem.item.price, quantity: cartItem.quantity }))
                             })).then(() => dispatch(deleteOneCart({ cart_id: cart.id })));
-                        }}>Checkout {cart.cart_items.reduce((prev, curr) => prev + (curr.quantity * curr.item.price), 0)}</button>
+                        }}>Checkout ${cart.cart_items.reduce((prev, curr) => prev + (curr.quantity * curr.item.price), 0)}</button>
                     </div>
                 ))
             }
         </div>
             :
         <div id='empty-cart'>
+            <h1><i className="fas fa-shopping-cart"></i></h1>
             <p>Add items from a restaurant to start a new cart</p>
         </div>
     );

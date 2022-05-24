@@ -14,18 +14,29 @@ def seed_menu_sections():
 
     # CARVEL
     sundaes = Menu_Section(restaurant_id=3, name="Sundaes")
-    shakes = Menu_Section(restaurant_id=3, name="Shakes")
+    ice_creams = Menu_Section(restaurant_id=3, name="Ice Creams")
     dessert_packs = Menu_Section(restaurant_id=3, name="Dessert Packs")
+
+    # PAPA JOHNS
+    pizza = Menu_Section(restaurant_id=4, name="Pizza")
+    papadias = Menu_Section(restaurant_id=4, name="Papadias")
+    sides = Menu_Section(restaurant_id=4, name="Sides")
 
     db.session.add(hot_coffees)
     db.session.add(cold_coffees)
     db.session.add(bakery)
+
     db.session.add(combo_meals)
     db.session.add(shareables)
     db.session.add(beverages)
+
     db.session.add(sundaes)
-    db.session.add(shakes)
+    db.session.add(ice_creams)
     db.session.add(dessert_packs)
+
+    db.session.add(pizza)
+    db.session.add(papadias)
+    db.session.add(sides)
 
     db.session.commit()
 

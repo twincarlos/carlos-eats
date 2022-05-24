@@ -20,6 +20,11 @@
     margin-bottom: -20px;
 }
 
+.category > img:hover {
+    background-color: #EEEEEE;
+    border-radius: 50%;
+}
+
 #restaurants {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -35,4 +40,24 @@
     width: 100%;
     height: 60%;
     object-fit: cover;
+}
+
+.faved {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    position: relative;
+    top: 40px;
+    left: 240px;
+    color: white;
+}
+
+.unfaved {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    position: relative;
+    top: 40px;
+    left: 240px;
+    color: white;
 }

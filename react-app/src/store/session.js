@@ -12,6 +12,9 @@ const DELETE_CART_ITEM = 'session/DELETE_CART_ITEM';
 
 const ADD_NEW_ORDER = 'session/ADD_NEW_ORDER';
 
+const FAVORITE_RESTAURANT = 'session/FAVORITE_RESTAURANT';
+const UNFAVORITE_RESTAURANT = 'session/UNFAVORITE_RESTAURANT';
+
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
@@ -54,6 +57,16 @@ const deleteCartItem = cartItem => ({
 const addNewOrder = order => ({
   type: ADD_NEW_ORDER,
   order
+});
+
+const favoriteRestaurant = restaurant => ({
+  type: FAVORITE_RESTAURANT,
+  restaurant
+});
+
+const unfavoriteRestaurant = restaurantId => ({
+  type: UNFAVORITE_RESTAURANT,
+  restaurantId
 });
 
 const initialState = { user: null };
@@ -206,6 +219,18 @@ export const addOneNewOrder = data => async dispatch => {
   dispatch(addNewOrder(order));
 }
 
+export const favoriteOneRestaurant = data => async dispatch => {
+  const response = await fetch(`/api/restaurants/favorite/${data.restaurantId}`, { method: 'POST' });
+  const restaurant = await response.json();
+  dispatch(favoriteRestaurant(restaurant));
+}
+
+export const unfavoriteOneRestaurant = data => async dispatch => {
+  const response = await fetch(`/api/restaurants/favorite/${data.restaurantId}`, { method: 'DELETE' });
+  const restaurantId = await response.json();
+  dispatch(unfavoriteRestaurant(restaurantId))
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
@@ -286,6 +311,22 @@ export default function reducer(state = initialState, action) {
           user: {
             ...state.user,
             orders: [...state.user.orders, action.order]
+          }
+        }
+      case FAVORITE_RESTAURANT:
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            favorites: [...state.user.favorites, action.restaurant]
+          }
+        }
+      case UNFAVORITE_RESTAURANT:
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            favorites: state.user.favorites.filter(restaurant => restaurant.id !== action.restaurantId)
           }
         }
     default:

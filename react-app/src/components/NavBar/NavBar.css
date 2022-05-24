@@ -23,24 +23,25 @@
 #logged-in > ul {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+#logged-in > ul > div {
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-#logged-in > ul > li#address {
-    background-color: #EEEEEE;
-    padding: 10px 20px;
-    border-radius: 20px;
-}
-
-#logged-in > ul > li > input {
-    padding: 10px 20px;
-    border-radius: 20px;
+#logged-in > ul > div > li > input {
+    padding: 10px 25px;
+    border-radius: 25px;
     border: none;
     outline: none;
     background-color: #EEEEEE;
+    height: 30px;
 }
 
-#logged-in > ul > li > button#cart {
+#logged-in > ul > div > li > button#cart {
     background-color: black;
     color: white;
     border: none;

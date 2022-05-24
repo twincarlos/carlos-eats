@@ -13,8 +13,4 @@ class Favorite(db.Model):
     restaurant = db.relationship("Restaurant", back_populates="favorites")
 
     def to_dict(self):
-        return {
-            'id': self.id,
-            'user_id': self.user_id,
-            'restaurant': self.restaurant.to_dict()
-        }
+        return self.restaurant.to_dict()

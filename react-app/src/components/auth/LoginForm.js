@@ -59,7 +59,11 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button type='submit'>Login</button>
+          <button style={{ marginBottom: 5 }} type='submit'>Login</button>
+          <button type='submit' onClick={async e => {
+            setEmail('demo@aa.io');
+            setPassword('password');
+          }}>Demo</button>
         </div>
       </form>
       <p>Don't have an account? <NavLink to='/signup'>Sign up!</NavLink></p>
