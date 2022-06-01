@@ -6,11 +6,21 @@ def seed_category_details():
     mcdonalds_fast_food = Category_Detail(category_id=2, restaurant_id=2)
     carvel_ice_cream = Category_Detail(category_id=3, restaurant_id=3)
     papa_johns_pizza = Category_Detail(category_id=4, restaurant_id=4)
+    
+    macondo_coffee = Category_Detail(category_id=1, restaurant_id=5)
+    chick_fil_a_fast_food = Category_Detail(category_id=2, restaurant_id=6)
+    cold_stone_ice_cream = Category_Detail(category_id=3, restaurant_id=7)
+    blaze_pizza = Category_Detail(category_id=4, restaurant_id=8)
 
     db.session.add(starbucks_coffee)
     db.session.add(mcdonalds_fast_food)
     db.session.add(carvel_ice_cream)
     db.session.add(papa_johns_pizza)
+    
+    db.session.add(macondo_coffee)
+    db.session.add(chick_fil_a_fast_food)
+    db.session.add(cold_stone_ice_cream)
+    db.session.add(blaze_pizza)
 
     db.session.commit()
 
