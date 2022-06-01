@@ -75,6 +75,43 @@ def seed_restaurants():
         longitude=123.45,
         hours=18
     )
+    
+    juan_valdez = Restaurant(
+        user_id=1,
+        name="Juan Valdez Cafe",
+        picture="https://d1ralsognjng37.cloudfront.net/3c63daf4-446e-4054-ab6c-58d018269c65.jpeg",
+        address="3530 Nw 83rd Ave",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
+    wendys = Restaurant(
+        user_id=1,
+        name="Wendy's",
+        picture="https://tb-static.uber.com/prod/image-proc/process…4c83f9863b0/c73ecc27d2a9eaa735b1ee95304ba588.jpeg",
+        address="16203 Sw 88th St",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
+    lick_nitrogen = Restaurant(
+        user_id=1,
+        name="Lick Nitrogen Ice Cream",
+        picture="https://duyt4h9nfnj50.cloudfront.net/resized/1539874673846-w1080-f3.jpg",
+        address="2601 Sw 147th Ave",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
+    mod_pizza = Restaurant(
+        user_id=1,
+        name="MOD Pizza",
+        picture="https://d1ralsognjng37.cloudfront.net/90aec12b-a59e-4eaf-a1b3-6642b81a079e.jpeg",
+        address="8525 Mills Dr",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
 
     db.session.add(starbucks)
     db.session.add(mcdonalds)
@@ -85,6 +122,11 @@ def seed_restaurants():
     db.session.add(chick_fil_a)
     db.session.add(cold_stone)
     db.session.add(blaze_pizza)
+    
+    db.session.add(juan_valdez)
+    db.session.add(wendys)
+    db.session.add(lick_nitrogen)
+    db.session.add(mod_pizza)
 
     db.session.commit()
 
