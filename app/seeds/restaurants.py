@@ -112,6 +112,43 @@ def seed_restaurants():
         longitude=123.45,
         hours=18
     )
+    
+    dunkin_donuts = Restaurant(
+        user_id=1,
+        name="Dunkin' Donuts",
+        picture="https://d1ralsognjng37.cloudfront.net/f2211e35-5e6b-4f33-a351-470f644fc483.jpeg",
+        address="11790 Sw 88th St",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
+    taco_bell = Restaurant(
+        user_id=1,
+        name="Taco Bell",
+        picture="https://d1ralsognjng37.cloudfront.net/d37e4be2-1ea7-40f0-90c6-4404aa5a9657.jpeg",
+        address="15201 SW 104 St",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
+    ice_cream_shop = Restaurant(
+        user_id=1,
+        name="The Ice Cream Shop",
+        picture="https://tb-static.uber.com/prod/image-proc/processed_images/c2767c10d76b1ac0efbcb60d6327b384/ffd640b0f9bc72838f2ebbee501a5d4b.jpeg",
+        address="12335 Sw 112th St",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
+    ragazza_pizza = Restaurant(
+        user_id=1,
+        name="Ragazza Pizza",
+        picture="https://tb-static.uber.com/prod/image-proc/processed_images/381b2cf5811a82cf205e0089914103a3/289197f4b252306213575a01442f7b66.webp",
+        address="2600 West Flavor St",
+        latitude=123.45,
+        longitude=123.45,
+        hours=18
+    )
 
     db.session.add(starbucks)
     db.session.add(mcdonalds)
@@ -127,6 +164,11 @@ def seed_restaurants():
     db.session.add(wendys)
     db.session.add(lick_nitrogen)
     db.session.add(mod_pizza)
+    
+    db.session.add(dunkin_donuts)
+    db.session.add(taco_bell)
+    db.session.add(ice_cream_shop)
+    db.session.add(ragazza_pizza)
 
     db.session.commit()
 
