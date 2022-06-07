@@ -16,6 +16,11 @@ def seed_category_details():
     wendys_fast_food = Category_Detail(category_id=2, restaurant_id=10)
     nitrogen_ice_cream = Category_Detail(category_id=3, restaurant_id=11)
     mod_pizza = Category_Detail(category_id=4, restaurant_id=12)
+    
+    dunkin_donuts_coffee = Category_Detail(category_id=1, restaurant_id=13)
+    taco_bell_fast_food = Category_Detail(category_id=2, restaurant_id=14)
+    ice_cream_shop = Category_Detail(category_id=3, restaurant_id=15)
+    ragazza_pizza = Category_Detail(category_id=4, restaurant_id=16)
 
     db.session.add(starbucks_coffee)
     db.session.add(mcdonalds_fast_food)
@@ -31,6 +36,11 @@ def seed_category_details():
     db.session.add(wendys_fast_food)
     db.session.add(nitrogen_ice_cream)
     db.session.add(mod_pizza)
+    
+    db.session.add(dunkin_donuts_coffee)
+    db.session.add(taco_bell_fast_food)
+    db.session.add(ice_cream_shop)
+    db.session.add(ragazza_pizza)
 
     db.session.commit()
 
