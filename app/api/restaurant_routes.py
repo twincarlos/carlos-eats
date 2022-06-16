@@ -8,12 +8,11 @@ restaurant_routes = Blueprint("restaurants", __name__)
 @restaurant_routes.route("", methods=["GET", "POST"])
 def all_restaurants():
     if request.method == "GET":
-        all_categories = Category.query.all()
+        all_categories = Category_Detail.query.all()
         categories = []
 
         for category in all_categories:
-            category_detail = Category_Detail.query.filter(Category_Detail.category_id == category.id).first()
-            categories.append(category_detail.to_dict())
+            categories.append(category.to_dict())
 
         return { "categories": categories }
 

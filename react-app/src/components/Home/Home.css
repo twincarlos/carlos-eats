@@ -25,9 +25,13 @@
     border-radius: 50%;
 }
 
+#restaurants-main {
+    display: flex;
+}
+
 #restaurants {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 80vw;
 }
 
@@ -47,8 +51,8 @@
     border: none;
     font-size: 25px;
     position: relative;
-    top: 40px;
-    left: 240px;
+    top: 13%;
+    left: 82%;
     color: white;
 }
 
@@ -57,7 +61,7 @@
     border: none;
     font-size: 25px;
     position: relative;
-    top: 40px;
-    left: 240px;
+    top: 13%;
+    left: 82%;
     color: white;
 }

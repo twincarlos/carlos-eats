@@ -21,7 +21,7 @@ function Home () {
 
     return (
         <div id='home'>
-            <Categories categories={restaurants} setFilter={setFilter}/>
+            <Categories categories={restaurants.slice(0, 4)} setFilter={setFilter}/>
             <Restaurants restaurants={restaurants} filter={filter}/>
         </div>
     );

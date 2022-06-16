@@ -38,7 +38,7 @@ def seed_restaurants():
         longitude=123.45,
         hours=18
     )
-    
+
     macondo_coffee = Restaurant(
         user_id=1,
         name="Macondo Coffee Roasters",
@@ -64,7 +64,7 @@ def seed_restaurants():
         address="13624 Sw 88th St",
         latitude=123.45,
         longitude=123.45,
-        horus=18
+        hours=18
     )
     blaze_pizza = Restaurant(
         user_id=1,
@@ -75,7 +75,7 @@ def seed_restaurants():
         longitude=123.45,
         hours=18
     )
-    
+
     juan_valdez = Restaurant(
         user_id=1,
         name="Juan Valdez Cafe",
@@ -88,7 +88,7 @@ def seed_restaurants():
     wendys = Restaurant(
         user_id=1,
         name="Wendy's",
-        picture="https://tb-static.uber.com/prod/image-proc/process…4c83f9863b0/c73ecc27d2a9eaa735b1ee95304ba588.jpeg",
+        picture="https://tb-static.uber.com/prod/image-proc/processed_images/749da7492d625ec1f24594c83f9863b0/c73ecc27d2a9eaa735b1ee95304ba588.jpeg",
         address="16203 Sw 88th St",
         latitude=123.45,
         longitude=123.45,
@@ -112,7 +112,7 @@ def seed_restaurants():
         longitude=123.45,
         hours=18
     )
-    
+
     dunkin_donuts = Restaurant(
         user_id=1,
         name="Dunkin' Donuts",
@@ -154,17 +154,17 @@ def seed_restaurants():
     db.session.add(mcdonalds)
     db.session.add(carvel)
     db.session.add(papa_johns)
-    
+
     db.session.add(macondo_coffee)
     db.session.add(chick_fil_a)
     db.session.add(cold_stone)
     db.session.add(blaze_pizza)
-    
+
     db.session.add(juan_valdez)
     db.session.add(wendys)
     db.session.add(lick_nitrogen)
     db.session.add(mod_pizza)
-    
+
     db.session.add(dunkin_donuts)
     db.session.add(taco_bell)
     db.session.add(ice_cream_shop)
